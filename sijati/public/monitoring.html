@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sijati</title>
+    <!-- Favicons -->
+    <link href="assets/img/favicon1.png" rel="icon" />
+    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Lato:400,300,700,900"
+        rel="stylesheet" />
+
+    <!-- Vendor CSS Files -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet" />
+    <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet" />
+    <link href="assets/vendor/venobox/venobox.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" />
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css"
+        rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/css/mdb.min.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+
+    <!-- Include Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Include the moment.js library -->
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+</head>
+
+<body>
+    <header id="header" class="fixed-top">
+        <div class="container">
+            <div class="logo float-left">
+                <h1 class="text-light">
+                    <a href="index.html"><i class="fa fa-lastfm  2x mx-2" aria-hidden="true"></i><span>Sijati</span></a>
+                </h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+                <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            </div>
+
+            <nav class="nav-menu float-right d-none d-lg-block">
+                <ul>
+                    <li class="logged-out" style="display: none;">
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li class="logged-out" style="display: none;">
+                        <a href="#" data-toggle="modal" data-target="#login">Login</a>
+                    </li>
+                    <li class="logged-in" style="display: none;">
+                        <a href="#" id="logout">Logout</a>
+                    </li>
+                    <li class="logged-in" style="display: none;">
+                        <a href="#" data-toggle="modal" data-target="#account">Account</a>
+                    </li>
+
+                </ul>
+            </nav>
+            <!-- .nav-menu -->
+        </div>
+    </header>
+    <!-- End #header -->
+
+    <!-- LOGIN MODAL -->
+    <div class="modal" tabindex="-1" role="dialog" id="login">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="form-login">
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="login-email" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="login-password" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ACCOUNT MODAL -->
+    <div class="modal" tabindex="-1" role="dialog" id="account">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detail Akun</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="account-details"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sensor data  terbaru & Grafik (Guard List)-->
+    <main id="main">
+        <!-- ======= About Us Section ======= -->
+        <section id="monitoring" class="monitor">
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="section-title">
+                        <h2>Data Sensor Terbaru</h2>
+                    </div>
+                </div>
+                <div class="row mb-10 justify-content-center">
+                    <div class="col-sm-12 col-md-4 mb-4">
+                        <div class="card card-cascade p-1">
+                            <!-- Card image -->
+                            <div class="view view-cascade gradient-card-header  blue-gradient p-4">
+                                <!-- Title -->
+                                <h2 class="card-header-title mb-0">
+                                    Suhu
+                                    <i class="fa fa-thermometer-three-quarters 3x" aria-hidden="true"></i>
+
+                                </h2>
+                                <h3 class="tgl header-title p-2" id="suhu">...</h3>
+                                <!-- Text -->
+                                <p class="mb-5 tgl p3">
+
+                                </p>
+                            </div>
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade text-center p-4">
+                                <!-- Text -->
+                                <p class="card-text">Data Terbaru Dari Sensor DHT22</p>
+
+                            </div>
+                            <!-- Card content -->
+                        </div>
+                        <!-- Card -->
+                    </div>
+                    
+                    <div class="col-sm-12 col-md-4 mb-4">
+                        <div class="card card-cascade p-1">
+                            <!-- Card image -->
+                            <div class="view view-cascade gradient-card-header  blue-gradient p-4">
+                                <!-- Title -->
+                                <h2 class="card-header-title mb-0">
+                                    Kelembaban
+                                    <i class="fa fa-thermometer-three-quarters 3x" aria-hidden="true"></i>
+
+                                </h2>
+                                <h3 class="tgl header-title p-2" id="kelembaban">...</h3>
+                                <!-- Text -->
+                                <p class="mb-5 tgl p3">
+
+                                </p>
+                            </div>
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade text-center p-4">
+                                <!-- Text -->
+                                <p class="card-text">Data Terbaru Dari Sensor DHT22</p>
+
+                            </div>
+                            <!-- Card content -->
+                        </div>
+                        <!-- Card -->
+                    </div>
+
+                    <div class="col-sm-12 col-md-4 mb-5">
+                        <div class="card card-cascade p-1">
+                            <!-- Card image -->
+
+                            <div class="view view-cascade gradient-card-header purple-gradient p-4">
+                                <!-- Title -->
+                                <h2 class="card-header-title mb-0 ">
+                                    Kondisi Lampu
+                                    <i class="fa fa-tint 3x" aria-hidden="true"></i>
+
+                                </h2>
+                                <h3 class="tgl header-title p-2" id="ldr">...</h3>
+                                <!-- Text -->
+                                <p class="mb-5 tgl p3">
+
+                                </p>                           
+                                
+                            </div>
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade text-center">
+                                <!-- Text -->
+                                <p class="card-text">Data Terbaru dari Sensor LDR</p>
+
+                            </div>
+                            <!-- Card content -->
+
+                        </div>
+                        <!-- Card -->
+                    </div>
+
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-8 mt-10">
+                        <div class="card text-center">
+                            <div class="card-header">
+                                Kontrol Lampu Jamur Tiram
+                            </div>
+                            <div class="card-body mt-10">
+                                <h5 class="card-title">
+                                    Hidupkan Lampu Jamur Tiram
+                                </h5>
+                                <p class="card-text">Hidupkan Lampu</p>
+                                <a href="#" class="btn btn-primary" id="lampu_on">Hidupkan Lampu</a>
+
+                                <p class="card-text">Matikan Lampu</p>
+                                <a href="#" class="btn btn-primary" id="lampu_off">Matikan Lampu</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <!-- Sensor data  terbaru & Grafik (Guard List)-->
+
+    <!-- Vendor JS Files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/venobox/venobox.min.js"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+    </script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.0/js/mdb.min.js">
+    </script>
+    <!-- update the version number as needed -->
+    <!-- Bootstrap core JavaScript-->
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.5/firebase-database.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <!-- Include Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Include the moment.js library -->
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+
+            apiKey: "AIzaSyCPGMipfl33nPgUAZ-lCgcrCm2sm-oCTKQ",
+            authDomain: "sijati.firebaseapp.com",
+            databaseURL: "https://sijati-default-rtdb.firebaseio.com",
+            projectId: "sijati",
+            storageBucket: "sijati.appspot.com",
+            messagingSenderId: "283420960119",
+            appId: "1:283420960119:web:b31d0294bc5a3ab2e56d72",
+            measurementId: "G-11N390PK58"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.database();
+    </script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
